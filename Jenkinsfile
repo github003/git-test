@@ -1,9 +1,11 @@
 pipeline {
   agent any
   stages {
-    stage('One') {
+    stage('First Stage') {
       steps {
         echo 'Hi, this is Github User 003'
+        ls -ltr
+        pwd
       }
     }
   }  
