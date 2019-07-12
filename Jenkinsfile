@@ -1,8 +1,10 @@
 pipeline {
   agent any
-  stage('One') {
-    steps {
-      echo 'Hi, this is Github User 003'
-		}
-  }
+  stages {
+    stage('One') {
+      steps {
+        echo 'Hi, this is Github User 003'
+      }
+    }
+  }  
 }
