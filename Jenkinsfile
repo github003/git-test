@@ -11,5 +11,12 @@ pipeline {
         '''
       }
     }
+    stage('Deploy Stage') {
+      steps {
+        retry(3) {
+          sh './flakey-deploy.sh'
+        }
+      }
+    }
   }  
 }
