@@ -1,5 +1,9 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'ubuntu'
+    }
+  }
   stages {
     stage('First Stage') {
       steps {
@@ -7,19 +11,19 @@ pipeline {
         sh '''
         ls -ltr
         pwd
-        whoami
+        whoami        
         '''
       }
     }
-    stage('Deploy Stage') {
-      steps {
-        retry(3) {
-          sh './flakey-deploy.sh'
-        }
-        timeout(time: 3, unit: 'MINUTES') {
-          sh './health-check.sh'
-        }
-      }
-    }
+    // stage('Deploy Stage') {
+    //   steps {
+    //     retry(3) {
+    //       sh './flakey-deploy.sh'
+    //     }
+    //     timeout(time: 3, unit: 'MINUTES') {
+    //       sh './health-check.sh'
+    //     }
+    //   }
+    // }
   }  
 }
