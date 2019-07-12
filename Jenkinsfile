@@ -1,29 +1,28 @@
 pipeline {
-  agent {
-    docker {
-      image 'ubuntu'
-    }
-  }
+  agent any
   stages {
-    stage('First Stage') {
+    stage('Test Stagep') {
       steps {
-        echo 'Hi, this is Github User 003'
-        sh '''
-        ls -ltr
-        pwd
-        whoami        
-        '''
+        sh 'echo "Fail!"; exit 1'
       }
     }
-    // stage('Deploy Stage') {
-    //   steps {
-    //     retry(3) {
-    //       sh './flakey-deploy.sh'
-    //     }
-    //     timeout(time: 3, unit: 'MINUTES') {
-    //       sh './health-check.sh'
-    //     }
-    //   }
-    // }
+  }
+  post {
+    always {
+        echo 'This will always run'
+    }
+    success {
+        echo 'This will run only if successful'
+    }
+    failure {
+        echo 'This will run only if failed'
+    }
+    unstable {
+        echo 'This will run only if the run was marked as unstable'
+    }
+    changed {
+        echo 'This will run only if the state of the Pipeline has changed'
+        echo 'For example, if the Pipeline was previously failing but is now successful'
+    }        
   }  
 }
