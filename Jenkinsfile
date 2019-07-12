@@ -4,8 +4,8 @@ pipeline {
     stage('First Stage') {
       steps {
         echo 'Hi, this is Github User 003'
-        ls -ltr
-        pwd
+        sh 'ls -ltr'
+        sh 'pwd'
       }
     }
   }  
