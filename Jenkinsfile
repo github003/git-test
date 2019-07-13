@@ -1,9 +1,15 @@
 pipeline {
   agent any
+
+  environment {
+    DISABLE_AUTH = 'true'
+    DB_ENGINE    = 'sqlite'
+  }
+
   stages {
     stage('Test Stagep') {
       steps {
-        sh 'echo "Fail!"; exit 0'
+        sh 'echo "Success!"; exit 0'
       }
     }
   }
