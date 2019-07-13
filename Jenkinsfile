@@ -10,6 +10,7 @@ pipeline {
     stage('Test Stagep') {
       steps {
         sh 'echo "Success!"; exit 0'
+        sh 'printenv'
       }
     }
   }
