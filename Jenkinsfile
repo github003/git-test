@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Test Stagep') {
       steps {
-        sh 'echo "Success!"; exit 0'
+        sh 'echo "Success!"; exit 1'
         sh 'printenv'
       }
     }
@@ -22,7 +22,11 @@ pipeline {
         echo 'This will run only if successful'
     }
     failure {
-        echo 'This will run only if failed'
+        failure {
+          mail to: 'ksandy003@gmail.com',
+             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+             body: "Something is wrong with ${env.BUILD_URL}"
+        }
     }
     unstable {
         echo 'This will run only if the run was marked as unstable'
