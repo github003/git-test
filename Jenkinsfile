@@ -7,15 +7,28 @@ pipeline {
   }
 
   stages {
-    stage('Confirmation Step') {
+    stage('Build') {
       steps {
-        input('Do you want to proceed?')
-        sh 'printenv'
+        checkout scm
+        echo 'Building'
       }
     }
-    stage('If Proceed is clicked') {
+    stage('Testing') {
       steps {
-        print('hello')
+        parallel(
+          "Step 1": {
+            echo 'Step 1'
+          },
+          "Step 2": {
+            echo 'Step 2'
+
+          }
+        )
+      }
+    }
+    stage('Send Mail') {
+      steps {
+        echo "sending mail"
       }
     }
   }
