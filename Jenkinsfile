@@ -22,11 +22,9 @@ pipeline {
         echo 'This will run only if successful'
     }
     failure {
-        failure {
-          mail to: 'ksandy003@gmail.com',
-             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-             body: "Something is wrong with ${env.BUILD_URL}"
-        }
+      mail to: 'ksandy003@gmail.com',
+          subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+          body: "Something is wrong with ${env.BUILD_URL}"
     }
     unstable {
         echo 'This will run only if the run was marked as unstable'
