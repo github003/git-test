@@ -7,10 +7,15 @@ pipeline {
   }
 
   stages {
-    stage('Test Stagep') {
+    stage('Confirmation Step') {
       steps {
-        sh 'echo "Success!"; exit 1'
+        input('Do you want to proceed?')
         sh 'printenv'
+      }
+    }
+    stage('If Proceed is clicked') {
+      steps {
+        print('hello')
       }
     }
   }
